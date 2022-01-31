@@ -1,7 +1,7 @@
 import unittest
 import json
 from weather import WeatherReporter
-from weather import ctof, ftoc
+from weather import ctof, ftoc, ctok, ktoc, ftok
 
 
 class DummyResponse:
@@ -52,8 +52,20 @@ class TestWeather(unittest.TestCase):
             c2 = round(ftoc(f), rounding)
             self.assertEqual(c1, c2, "{}C converted to F then back to C gives {}C".format(c1, c2) )
             
-            
+    def test_ctok(self):
+        k = ctok(99)
+        self.assertEqual(k, 372.15, "99C should be 372.15K, not {}".format(k))
+    
+    def test_ktoc(self):
+        c = ktoc(300)
+        c = round(c, 8)
+        self.assertEqual(c, 26.85, "300K should be 26.85C, not {}".format(c))
         
+    def test_ftok(self):
+        k = ftok(40)
+        self.assertEqual(k, 277.59444444444443, "40F should be 277.59444444444443K, not {}".format(k))
+        
+    
 
 if __name__ == '__main__':
     unittest.main()
