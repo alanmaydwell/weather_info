@@ -48,6 +48,12 @@ def ctok(centigrade):
 def ftok(faren):
     return ctok(ftoc(faren))
 
+def ktoc(kelvin):
+    return kelvin - 273.15
+
+def ktof(kelvin):
+    return ctof(ktoc(kelvin))
+
 
 if __name__ == "__main__":
     rep = WeatherReporter()
